@@ -1,2 +1,1 @@
-# seam-carving
-shitty android seam carving
+fizzbuzz
