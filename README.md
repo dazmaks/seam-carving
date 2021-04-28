@@ -1,1 +1,1 @@
-fizzbuzz
+some strange stuff
