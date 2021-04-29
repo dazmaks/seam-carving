@@ -8,7 +8,7 @@ import static java.lang.StrictMath.pow;
 import static java.lang.StrictMath.sqrt;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         /*
         if(args.length!=2) {
             System.out.println("Usage: filter.jar [INPUT].jpg [OUTPUT].jpg");
@@ -19,28 +19,32 @@ public class Main {
 
         */
         Img img = new Img("ducks.jpg");
-        Img output = new Img("ducks2.jpg");
+        Img output = new Img("ducks-result.jpg");
 
         for (int x = 0; x<img.width; x++){
             for(int y = 0; y<img.height; y++){
-
+                //getting current pixel color
                 Color color1 = img.rgbColor(x, y);
                 Color color2 = img.rgbColor(x, y);
 
+                //out of bounds
                 if (x != 0) color1 = img.rgbColor(x-1, y);
                 if (x != img.width-1) color2 = img.rgbColor(x+1, y);
-                //Color newColor = new Color(r, g, b);
 
-                //float changed to int
                 int r = color1.getRed() - color2.getRed();
                 int g = color1.getGreen() - color2.getGreen();
                 int b = color1.getBlue() - color2.getBlue();
 
-                img.bimg.setRGB(x, y, (int)sqrt(pow(r+g+b, 2)));
+                Color ensq = new Color((int)sqrt(pow(r + g + b, 2))); //calculating energy
+                int midensq = (int) ((ensq.getRed() + ensq.getBlue() + ensq.getGreen())/1.5); //calculating arithmetic mean
+
+                Color newColor = new Color(midensq, midensq, midensq); //making image mono-chrome
+
+                img.result.setRGB(x, y, newColor.getRGB()); //setting pixel
             }
         }
 
-        ImageIO.write(img.bimg, output.extension, output.file);
+        ImageIO.write(img.result, img.extension, output.file); //writing result to file
         System.out.println("Successfully wrote to "+output.imagePath);
     }
 }
