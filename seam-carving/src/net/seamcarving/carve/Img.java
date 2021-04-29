@@ -29,7 +29,7 @@ public class Img {
 
     String imagePath, extension;
     int height, width;
-    BufferedImage bimg;
+    BufferedImage bimg, result;
     File file;
     boolean exists;
 
@@ -41,10 +41,12 @@ public class Img {
             this.bimg = getBImg(this.file);
             this.height = this.bimg.getHeight();
             this.width = this.bimg.getWidth();
+            this.result = new BufferedImage(this.width, this.height, this.bimg.getType());
         }else{
             this.bimg = null;
             this.height = 0;
             this.width = 0;
+            this.result = null;
         }
         this.extension = getExtension();
     }
