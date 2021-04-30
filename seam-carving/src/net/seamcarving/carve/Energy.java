@@ -5,7 +5,7 @@ import java.awt.*;
 import static java.lang.StrictMath.sqrt;
 
 public class Energy {
-    public static Img energy(Img img) {
+    public static void energy(Img img) {
         for (int x = 0; x<img.width; x++){
             for(int y = 0; y<img.height; y++){
                 //getting current pixel color
@@ -28,6 +28,5 @@ public class Energy {
                 img.result.setRGB(x, y, newColor.getRGB()); //setting pixel
             }
         }
-        return img;
     }
 }
