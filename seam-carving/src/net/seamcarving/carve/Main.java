@@ -14,10 +14,10 @@ public class Main {
         Img output = new Img(args[1]);
 
         */
-        Img img = new Img("ducks.jpg");
-        Img output = new Img("ducks-result.jpg");
+        Img img = new Img("cat.jpg");
+        Img output = new Img("cat-result.jpg");
 
-        Energy.energy(img);
+        Energy.toEnergy(img);
         ImageIO.write(img.result, img.extension, output.file); //writing result to file
         System.out.println("Successfully wrote to "+output.imagePath);
     }
