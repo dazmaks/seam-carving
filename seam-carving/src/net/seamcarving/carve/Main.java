@@ -14,10 +14,15 @@ public class Main {
         Img output = new Img(args[1]);
 
         */
-        Img img = new Img("cat.jpg");
-        Img output = new Img("cat-result.jpg");
+        Img img = new Img("falls.jpg");
+        Img temp = new Img("falls-temp.jpg");
+        Img output = new Img("falls-result.jpg");
 
         Energy.toEnergy(img);
+        ImageIO.write(img.result, img.extension, temp.file); //writing result to file
+
+        int [][] path = Carving.pathFind(img);
+        Carving.pathDraw(img, path);
         ImageIO.write(img.result, img.extension, output.file); //writing result to file
         System.out.println("Successfully wrote to "+output.imagePath);
     }
