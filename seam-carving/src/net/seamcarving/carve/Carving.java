@@ -4,7 +4,7 @@ public class Carving {
     public static int[][] pathFind(Img img) {
         /*
         this function is finding darkest pixel on
-        top than it's looking for darkest neighbours
+        top then it's looking for darkest neighbours
         to the bottom.
 
         (not effective for seam carving, but fast)
@@ -16,7 +16,7 @@ public class Carving {
         int[] current = {startPos, 0}; // [0] - x; [1] - y
         int[][] path = new int[img.width][img.height]; //contains x and y of darkest pixels
 
-        while(current[1]!=img.height-1) {
+        while(current[1]!=img.height--) {
             path[current[1]][0] = current[0];
             path[current[1]][1] = current[1];
             darkest = darkestNeighbour(img, current);
