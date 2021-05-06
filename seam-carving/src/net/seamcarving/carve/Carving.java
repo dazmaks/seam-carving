@@ -10,17 +10,13 @@ public class Carving {
         (not effective for seam carving, but fast)
         */
 
-        int startPos = darkestPositionTop(img);
-
-        int[] darkest;
-        int[] current = {startPos, 0}; // [0] - x; [1] - y
+        int[] current = {darkestPositionTop(img), 0}; // [0] - x; [1] - y
         int[][] path = new int[img.width][img.height]; //contains x and y of darkest pixels
 
-        while(current[1]!=img.height--) {
+        while(current[1]!=img.height-1) {
             path[current[1]][0] = current[0];
             path[current[1]][1] = current[1];
-            darkest = darkestNeighbour(img, current);
-            current[0] = darkest[0];
+            current[0] = darkestNeighbour(img, current);
             current[1]++;
         }
         return path;
@@ -51,13 +47,13 @@ public class Carving {
         return darkestPosition;
     }
 
-    public static int[] darkestNeighbour(Img img, int[] position) {
+    public static int darkestNeighbour(Img img, int[] position) {
         //position contains [0]=x [1]=y
 
         /*
         * position is always on top.
         *
-        *         X <-position
+        *         X <-position       (X is pixel)
         *       X X X <-neighbours
         *
         * neighbour Y is equal to position
@@ -67,22 +63,17 @@ public class Carving {
         * middle -1, +0 or +1
         */
         int darkest = 255;
-        int[] darkestPosition = {0, 0};
+        int darkestPosition = 0;
 
-        int currentColorBlue;
-
-        int x;
-        int y = position[1];
+        int currentColorBlue, x;
 
         for (byte i = -1; i < 1; i++) {
             x = position[0] + i + 1;
 
-            currentColorBlue = img.rgbColor(x, y).getBlue();
-
+            currentColorBlue = img.rgbColor(x, position[1]).getBlue();
             if(darkest>currentColorBlue) {
                 darkest = currentColorBlue;
-                darkestPosition[0] = x;
-                darkestPosition[1] = y;
+                darkestPosition = x;
             }
         }
         return darkestPosition;
