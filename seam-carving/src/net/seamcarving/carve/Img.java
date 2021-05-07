@@ -29,7 +29,7 @@ public class Img {
 
     String imagePath, extension;
     int height, width;
-    BufferedImage bimg, result;
+    BufferedImage bufferedImage, result;
     File file;
     boolean exists;
 
@@ -38,12 +38,12 @@ public class Img {
         this.file = new File(imagePath);
         this.exists = file.exists();
         if(exists) {
-            this.bimg = getBImg(this.file);
-            this.height = this.bimg.getHeight();
-            this.width = this.bimg.getWidth();
-            this.result = new BufferedImage(this.width, this.height, this.bimg.getType());
+            this.bufferedImage = getBImg(this.file);
+            this.height = this.bufferedImage.getHeight();
+            this.width = this.bufferedImage.getWidth();
+            this.result = new BufferedImage(this.width, this.height, this.bufferedImage.getType());
         }else{
-            this.bimg = null;
+            this.bufferedImage = null;
             this.height = 0;
             this.width = 0;
             this.result = null;
@@ -52,6 +52,6 @@ public class Img {
     }
 
     public Color rgbColor(int x, int y) {
-        return new Color(this.bimg.getRGB(x, y));
+        return new Color(this.bufferedImage.getRGB(x, y));
     }
 }
