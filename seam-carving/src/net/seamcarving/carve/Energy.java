@@ -11,6 +11,8 @@ public class Energy {
 
         int r, g, b;
 
+        int energyAM;
+
         for (int x = 0; x<img.width; x++){
             for(int y = 0; y<img.height; y++){
                 //getting current pixel color
@@ -28,7 +30,7 @@ public class Energy {
                 b = (color1.getBlue() - color2.getBlue())/2;
 
                 Color energy = new Color((int)sqrt(r*r + g*g + b*b)); //calculating energy
-                int energyAM = energy.getRed() + energy.getBlue() + energy.getGreen(); //calculating arithmetic mean
+                energyAM = energy.getRed() + energy.getBlue() + energy.getGreen(); //calculating arithmetic mean
 
                 Color newColor = new Color(energyAM, energyAM, energyAM); //making image mono-chrome
 

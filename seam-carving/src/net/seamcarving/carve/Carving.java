@@ -10,7 +10,7 @@ public class Carving {
         (not effective for seam carving, but fast)
         */
 
-        int[] current = {darkestPositionTop(img), 0}; // [0] - x; [1] - y
+        int[] current = {darkestPositionX(img, 0), 0}; // [0] - x; [1] - y
         int[][] path = new int[img.width][img.height]; //contains x and y of darkest pixels
 
         while(current[1]!=img.height-1) {
@@ -19,6 +19,9 @@ public class Carving {
             current[0] = darkestNeighbour(img, current);
             current[1]++;
         }
+
+
+
         return path;
     }
     /*
@@ -34,11 +37,11 @@ public class Carving {
         }
     }
 
-    public static int darkestPositionTop(Img img) {
+    public static int darkestPositionX(Img img, int y) {
         int darkest=255, darkestPosition=0, currentColorBlue;
 
         for (int x = 0; x<img.width; x++) {
-            currentColorBlue = img.rgbColor(x, 0).getBlue();
+            currentColorBlue = img.rgbColor(x, y).getBlue();
             if(currentColorBlue<darkest) { //actually you can use getGreen or getRed but I recommend getBlue
                 darkest = currentColorBlue;
                 darkestPosition = x;
@@ -71,6 +74,8 @@ public class Carving {
             x = position[0] + i + 1;
 
             currentColorBlue = img.rgbColor(x, position[1]).getBlue();
+
+            if(currentColorBlue==0) return x;
             if(darkest>currentColorBlue) {
                 darkest = currentColorBlue;
                 darkestPosition = x;
