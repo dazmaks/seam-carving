@@ -9,7 +9,7 @@ public class Main {
         Img temp = new Img("falls-temp.jpg");
         Img output = new Img("falls-result.jpg");
 
-        Energy.toEnergy(img);
+        Energy.toEnergyDarker(img);
         ImageIO.write(img.result, img.extension, temp.file); //writing result to file
 
         int [][] path = Carving.pathFind(img);
