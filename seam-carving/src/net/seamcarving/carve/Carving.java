@@ -20,8 +20,6 @@ public class Carving {
             current[1]++;
         }
 
-
-
         return path;
     }
     /*
