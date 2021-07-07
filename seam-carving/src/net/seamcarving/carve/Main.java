@@ -5,9 +5,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Img img = new Img("falls.jpg");
-        Img temp = new Img("falls-temp.jpg");
-        Img output = new Img("falls-result.jpg");
+        Img img = new Img("waterfall.jpg");
+        Img temp = new Img("waterfall-temp.jpg");
+        Img output = new Img("waterfall-result.jpg");
 
         Energy.toEnergyDarker(img);
         ImageIO.write(img.result, img.extension, temp.file); //writing result to file
